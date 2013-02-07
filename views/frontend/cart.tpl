@@ -8,14 +8,14 @@ Your cart can be downloaded as an <a href="{$smarty.const.WWW_TOP}/rss?t=-2&amp;
 {if $results|@count > 0}
 
 <form id="nzb_multi_operations_form" action="get">
-
+<div class="container" id="tablenav">
 <div class="nzb_multi_operations">
 	<small>With Selected:</small>
 	<input type="button" class="nzb_multi_operations_cartdelete" value="Delete" />
 	{if $sabintegrated}<input type="button" class="nzb_multi_operations_cartsab" value="Send To Sab" />{/if}
 	<input type="button" class="nzb_multi_operations_download" value="Download" />
 </div>
-
+</div>
 <table style="width:100%;" class="data highlight" id="browsetable">
 	<tr>
 		<th width="50"><input id="chkSelectAll" type="checkbox" class="nzb_check_all" /><label for="chkSelectAll" style="display:none;">Select All</label></th>

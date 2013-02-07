@@ -1,5 +1,4 @@
  
-			<h1>{$page->title}</h1>
 			<h2>Getting in touch</h2>
 
 			<p>
@@ -13,8 +12,39 @@
 			<p>
 				Alternatively use our contact form to get in touch.
 			</p>
-			
-			<form method="post" action="contact-us">
+			<br />
+    <form class="form-horizontal" method="post" action="contact-us">
+    <div class="control-group">
+    <label class="control-label" for="username">Your Name</label>
+    <div class="controls">
+    <input type="text" id="username" name="username" placeholder="Your Name or Username">
+    </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="useremail">Your Email</label>
+    <div class="controls">
+    <input type="text" id="useremail" name="useremail" placeholder="Email Address">
+    </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="comment">Your Comment</label>
+    <div class="controls">
+    <textarea rows="10" name="comment"></textarea>
+    </div>
+    </div>
+    <div class="control-group">
+    <div class="controls">
+    <button type="submit" class="btn">Submit</button>
+    </div>
+    </div>
+    </form>
+
+
+
+
+
+
+<!-- 			<form method="post" action="contact-us">
 				<table>
 					<tr>
 						<td width="100px">Your name: </td>
@@ -41,5 +71,5 @@
 						</td>
 					</tr>
 				</table>
-			</form>
+			</form> -->
 			{/if}

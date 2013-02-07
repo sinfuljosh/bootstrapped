@@ -18,7 +18,7 @@
 		</div>
 		
 		<form id="nzb_multi_operations_form" action="get">
-		
+		<div class="container" id="tablenav">
 		<div class="nzb_multi_operations">
 			{if $section != ''}View: <a href="{$smarty.const.WWW_TOP}/{$section}?t={$category}">Covers</a> | <b>List</b><br />{/if}
 			<small>With Selected:</small>
@@ -31,7 +31,7 @@
 			<input type="button" class="nzb_multi_operations_delete" value="Del" />
 			{/if}	
 		</div>
-		
+		</div>
 
 		<table style="width:100%;" class="data highlight icons" id="browsetable">
 			<tr>
@@ -104,7 +104,7 @@
 	</table>
 	
 	<br/>
-	
+	<div class="container" id="tablenav">
 	{$pager}
 	
 	<div class="nzb_multi_operations">
@@ -118,7 +118,7 @@
 		<input type="button" class="nzb_multi_operations_delete" value="Del" />
 		{/if}	
 	</div>
-	
+	</div>
 	</form>
 
 	{/foreach}

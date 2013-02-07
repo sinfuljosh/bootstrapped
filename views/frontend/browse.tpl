@@ -11,10 +11,16 @@
 </p>
 {/if}
 	
-{if $results|@count > 0}
+{if $results|@count <= 0}
 
-<form id="nzb_multi_operations_form" action="get">
+<p>
+	No Releases Found.
+</p>
 
+{else}
+
+<div class="container" id="tablenav">
+	<form id="nzb_multi_operations_form" action="get">
 <div class="nzb_multi_operations">
 	{if $section != ''}View: <a href="{$smarty.const.WWW_TOP}/{$section}?t={$category}">Covers</a> | <b>List</b><br />{/if}
 	<small>With Selected:</small>
@@ -29,11 +35,12 @@
 </div>
 
 {$pager}
-
-<table style="width:100%;" class="data highlight icons" id="browsetable">
+</div>
+<table class="data highlight icons" id="browsetable">
+<thead>
 	<tr>
 		<th><input id="chkSelectAll" type="checkbox" class="nzb_check_all" /><label for="chkSelectAll" style="display:none;">Select All</label></th>
-		<th>name<br/><a title="Sort Descending" href="{$orderbyname_desc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_down.gif" alt="Sort Descending" /></a><a title="Sort Ascending" href="{$orderbyname_asc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_up.gif" alt="Sort Ascending" /></a></th>
+		<th colspan="2">name<br/><a title="Sort Descending" href="{$orderbyname_desc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_down.gif" alt="Sort Descending" /></a><a title="Sort Ascending" href="{$orderbyname_asc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_up.gif" alt="Sort Ascending" /></a></th>
 		<th>category<br/><a title="Sort Descending" href="{$orderbycat_desc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_down.gif" alt="Sort Descending" /></a><a title="Sort Ascending" href="{$orderbycat_asc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_up.gif" alt="Sort Ascending" /></a></th>
 		<th>posted<br/><a title="Sort Descending" href="{$orderbyposted_desc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_down.gif" alt="Sort Descending" /></a><a title="Sort Ascending" href="{$orderbyposted_asc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_up.gif" alt="Sort Ascending" /></a></th>
 		<th>size<br/><a title="Sort Descending" href="{$orderbysize_desc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_down.gif" alt="Sort Descending" /></a><a title="Sort Ascending" href="{$orderbysize_asc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_up.gif" alt="Sort Ascending" /></a></th>
@@ -41,10 +48,12 @@
 		<th>stats<br/><a title="Sort Descending" href="{$orderbystats_desc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_down.gif" alt="Sort Descending" /></a><a title="Sort Ascending" href="{$orderbystats_asc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_up.gif" alt="Sort Ascending" /></a></th>
 		<th></th>
 	</tr>
-
-	{foreach from=$results item=result}
-		<tr class="{cycle values=",alt"}{if $lastvisit|strtotime<$result.adddate|strtotime} new{/if}" id="guid{$result.guid}">
+</thead>
+<tbody>
+		{foreach from=$results item=result}
+		<tr class="{if $lastvisit|strtotime<$result.adddate|strtotime}success{/if}" id="guid{$result.guid}">
 			<td class="check"><input id="chk{$result.guid|substr:0:7}" type="checkbox" class="nzb_check" value="{$result.guid}" /></td>
+						<td class="preview" width="74px">{if $result.haspreview == 1 && $userdata.canpreview == 1}<a href="{$smarty.const.WWW_TOP}/covers/preview/{$result.guid}_thumb.jpg" name="name{$result.guid}" title="View Screenshot" class="modal_prev" rel="preview"><img class="shadow img-polaroid" style="max-width:none;width:72px;" src="{$smarty.const.WWW_TOP}/covers/preview/{$result.guid}_thumb.jpg" border="0" alt="{$result.title|escape:"htmlall"}" /></a>{/if}</td>
 			<td class="item">
 			<label for="chk{$result.guid|substr:0:7}"><a class="title" title="View details" href="{$smarty.const.WWW_TOP}/details/{$result.guid}/{$result.searchname|escape:"seourl"}">{$result.searchname|escape:"htmlall"|replace:".":" "}</a></label>
 				
@@ -82,7 +91,7 @@
 				<a title="View file list" href="{$smarty.const.WWW_TOP}/filelist/{$result.guid}">{$result.totalpart}</a>
 				{if $result.rarinnerfilecount > 0}
 					<div class="rarfilelist">
-						<img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/icons/magnifier.png" alt="{$result.guid}" class="tooltip" />				
+						<img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/icons/magnifier.png" alt="{$result.guid}" class="fileinfo" />				
 					</div>
 				{/if}
 			</td>
@@ -94,13 +103,14 @@
 			</td>
 		</tr>
 	{/foreach}
-	
+</tbody>
 </table>
+
 <br/>
 
-{$pager}
-
+<div class="container" id="tablenav">
 <div class="nzb_multi_operations">
+	{if $section != ''}View: <a href="{$smarty.const.WWW_TOP}/{$section}?t={$category}">Covers</a> | <b>List</b><br />{/if}
 	<small>With Selected:</small>
 	<input type="button" class="nzb_multi_operations_download" value="Download NZBs" />
 	<input type="button" class="nzb_multi_operations_cart" value="Add to Cart" />
@@ -112,7 +122,10 @@
 	{/if}	
 </div>
 
+{$pager}
 </form>
+</div>
+
 
 {/if}
 

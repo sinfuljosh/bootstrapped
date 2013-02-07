@@ -59,7 +59,8 @@
 
 {if $results|@count > 0}
 
-<form id="nzb_multi_operations_form" action="get">
+	<form id="nzb_multi_operations_form" action="get">
+<div class="container" id="tablenav">
 
 <div class="nzb_multi_operations">
 	View: <b>Covers</b> | <a href="{$smarty.const.WWW_TOP}/browse?t={$category}">List</a><br />
@@ -68,20 +69,22 @@
 	<input type="button" class="nzb_multi_operations_cart" value="Add to Cart" />
 	{if $sabintegrated}<input type="button" class="nzb_multi_operations_sab" value="Send to SAB" />{/if}
 </div>
-<br/>
+
 
 {$pager}
-
-<table style="width:100%;" class="data highlight icons" id="coverstable">
+</div>
+<table class="data highlight icons" id="coverstable">
+<thead>
 	<tr>
 		<th width="130"><input type="checkbox" class="nzb_check_all" /></th>
 		<th>title<br/><a title="Sort Descending" href="{$orderbytitle_desc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_down.gif" alt="" /></a><a title="Sort Ascending" href="{$orderbytitle_asc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_up.gif" alt="" /></a></th>
 		<th>year<br/><a title="Sort Descending" href="{$orderbyyear_desc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_down.gif" alt="" /></a><a title="Sort Ascending" href="{$orderbyyear_asc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_up.gif" alt="" /></a></th>
 		<th>rating<br/><a title="Sort Descending" href="{$orderbyrating_desc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_down.gif" alt="" /></a><a title="Sort Ascending" href="{$orderbyrating_asc}"><img src="{$smarty.const.WWW_TOP}/templates/bootstrapped/images/sorting/arrow_up.gif" alt="" /></a></th>
 	</tr>
-
+</thead>
+<tbody>
 	{foreach from=$results item=result}
-		<tr class="{cycle values=",alt"}">
+		<tr>
 			<td class="mid">
 				<div class="movcover">
 					<a target="_blank" href="{$site->dereferrer_link}http://www.imdb.com/title/tt{$result.imdbID}/" name="name{$result.imdbID}" title="View movie info" class="modal_imdb" rel="movie" >
@@ -146,11 +149,11 @@
 			</td>
 		</tr>
 	{/foreach}
-	
+</tbody>	
 </table>
 
 <br/>
-
+<div class="container" id="tablenav">
 {$pager}
 
 <div class="nzb_multi_operations">
@@ -160,6 +163,7 @@
 	{if $sabintegrated}<input type="button" class="nzb_multi_operations_sab" value="Send to SAB" />{/if}
 </div>
 
+</div>
 </form>
 
 {/if}

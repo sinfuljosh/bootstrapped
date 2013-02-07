@@ -31,7 +31,7 @@
 {else}
 
 <form id="nzb_multi_operations_form" action="get">
-
+<div class="container" id="tablenav">
 <div class="nzb_multi_operations">
 	<small>With Selected:</small>
 	<input type="button" class="nzb_multi_operations_download" value="Download NZBs" />
@@ -40,7 +40,7 @@
 </div>
 
 {$pager}
-
+</div>
 <table style="width:100%;" class="data highlight icons" id="coverstable">
 	<tr>
 		<th width="130"><input type="checkbox" class="nzb_check_all" /></th>
@@ -122,7 +122,7 @@
 </table>
 
 <br/>
-
+<div class="container" id="tablenav">
 {$pager}
 
 <div class="nzb_multi_operations">
@@ -131,7 +131,7 @@
 	<input type="button" class="nzb_multi_operations_cart" value="Add to Cart" />
 	{if $sabintegrated}<input type="button" class="nzb_multi_operations_sab" value="Send to SAB" />{/if}
 </div>
-
+</div>
 </form>
 
 {/if}

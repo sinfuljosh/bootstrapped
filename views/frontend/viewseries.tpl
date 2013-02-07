@@ -20,8 +20,8 @@
 	{if $rage[0].imgdata != ""}<img class="shadow" alt="{$rage[0].releasetitle} Logo" src="{$smarty.const.WWW_TOP}/getimage?type=tvrage&amp;id={$rage[0].ID}" />{/if}
 	<p>
 		{if $seriesgenre != ''}<b>{$seriesgenre}</b><br />{/if}
-		<span class="descinitial">{$seriesdescription|escape:"htmlall"|nl2br|magicurl|truncate:"100":" </span><a class=\"descmore\" href=\"#\">more...</a>"}
-		{if $seriesdescription|strlen > 100}<span class="descfull">{$seriesdescription|escape:"htmlall"|nl2br|magicurl}</span>{else}</span>{/if}
+		<span class="descinitial">{$seriesdescription|escape:"htmlall"|nl2br|magicurl|truncate:"800":" </span><a class=\"descmore\" href=\"#\">more...</a>"}
+		{if $seriesdescription|strlen > 800}<span class="descfull">{$seriesdescription|escape:"htmlall"|nl2br|magicurl}</span>{else}</span>{/if}
 	</p>
 
 </div>

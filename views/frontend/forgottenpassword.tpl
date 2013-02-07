@@ -1,25 +1,21 @@
  
-<h1>{$page->title}</h1>
+
 
 {if $error != ''}
-	<div class="error">{$error}</div>
+	<div class="alert alert-error">{$error}</div>
 {/if}
-
+<div class="span5">
 {if $confirmed == '' && $sent == ''}
+	        <h2 class="form-signin-heading">Forgotten Password</h2>
+
 	<p>
 		Please enter the email address you used to register and we will send an email to reset your password. If you cannot remember your email, or no longer have access to it, please <a href="{$smarty.const.WWW_TOP}/contact-us">contact us</a>.
 	</p>
 
-	<form method="post" action="forgottenpassword?action=submit">
+	<form class="form-forgotpass" method="post" action="forgottenpassword?action=submit">
+    <input type="email" id="email" autocomplete="off" name="email" value="{$email}" class="input-block-level" placeholder="Email" required>
+                <button class="btn btn-primary" type="submit">Request Password Reset</button>
 
-		<table class="data">
-			<tr><th><label for="email">Email</label>: <em>*</em></th>
-				<td>
-					<input id="email" autocomplete="off" name="email" value="{$email}" type="email"/>
-				</td>
-			</tr>
-			<tr><th></th><td><input type="submit" value="Request Password Reset" /><div style="float:right;" class="hint"><em>*</em> Indicates mandatory field.</div></td></tr>
-		</table>
 	</form>
 {elseif $sent != ''}
 	<p>
@@ -30,3 +26,4 @@
 		Your password has been reset and sent to you in an email.
 	</p>
 {/if}
+</div>

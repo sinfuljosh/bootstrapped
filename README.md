@@ -23,7 +23,13 @@ For those that want to see.
 
 http://imgur.com/a/xyZox#0
 
-Also. The goal is that say..... Zero. can drop in the Slate css 
-from bootswatch.com and it would change the color theme from blinding white to 
-badass black :)
+Now with a background and dropshadow
+http://i.imgur.com/NYCZQjC.png
+
+
+To Do-
+Shopping cart in drop down
+Update the notify to a libnotify or growl 
+update the modal form and modal preview.
+update the tables 
 
